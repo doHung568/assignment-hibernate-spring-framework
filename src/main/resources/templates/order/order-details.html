@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Order Details</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+<div class="container-md mt-4">
+    <h2>Order Details View</h2>
+    <h4>Review order information below</h4>
+
+    <form>
+        <div class="mb-4">
+            <label class="form-label">Full Name</label>
+            <div class="row">
+                <div class="col">
+                    <input type="text" class="form-control"
+                           th:value="${orderDTO.firstName}" readonly>
+                </div>
+                <div class="col">
+                    <input type="text" class="form-control"
+                           th:value="${orderDTO.lastName}" readonly>
+                </div>
+            </div>
+        </div>
+
+        <div class="mb-4">
+            <label for="formControlInput" class="form-label">Email address</label>
+            <input type="email" class="form-control" id="formControlInput"
+                   th:value="${orderDTO.email}" readonly>
+        </div>
+
+        <div class="mb-4">
+            <label for="phone" class="form-label">Phone</label>
+            <input type="tel" class="form-control" id="phone"
+                   th:value="${orderDTO.phone}" readonly>
+        </div>
+
+        <div>
+            <label class="form-label">Address</label>
+            <div class="mb-2">
+                <input type="text" class="form-control" th:value="${orderDTO.addressLine1}" readonly>
+            </div>
+            <div class="mb-2">
+                <input type="text" class="form-control" th:value="${orderDTO.addressLine2}" readonly>
+            </div>
+
+            <div class="row mb-2">
+                <div class="col">
+                    <input type="text" class="form-control" th:value="${orderDTO.city}" readonly>
+                </div>
+                <div class="col">
+                    <input type="text" class="form-control" th:value="${orderDTO.region}" readonly>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col">
+                    <input type="text" class="form-control" th:value="${orderDTO.postalCode}" readonly>
+                </div>
+                <div class="col">
+                    <select class="form-select" name="country" disabled>
+                        <option value="vietnam" th:selected="${orderDTO.country == 'vietnam'}">Vietnam</option>
+                        <option value="cambodia" th:selected="${orderDTO.country == 'cambodia'}">Cambodia</option>
+                        <option value="laos" th:selected="${orderDTO.country == 'laos'}">Laos</option>
+                        <option value="thailand" th:selected="${orderDTO.country == 'thailand'}">Thailand</option>
+                        <option value="china" th:selected="${orderDTO.country == 'china'}">China</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="mt-4 d-flex justify-content-center gap-2">
+                <a href="/order/list" class="btn btn-secondary">Back to List</a>
+            </div>
+        </div>
+    </form>
+</div>
+</body>
+</html>
