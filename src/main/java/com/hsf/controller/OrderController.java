@@ -44,18 +44,15 @@ public class OrderController {
             return "order/order-form";
         }
 
-        // check exist email
-        if(customerService.checkExistByEmail(dto.getEmail())){
-            request.setAttribute("message", "Customer already exists");
+        boolean existEmail = customerService.checkExistByEmail(dto.getEmail());
+        boolean existPhone = customerService.checkExistByPhoneNumber(dto.getPhoneNumber());
+        // email and phone don't exist -> save new customer and allow to create new order
+        if(!existEmail && !existPhone){
+            customerService.saveNewCustomer(dto);
+        } else if((existEmail && !existPhone) || (!existEmail && existPhone)){
+            request.setAttribute("message", "Email and phone not mapping");
             return "order/order-form";
         }
-
-        // check exist phone number
-        if(customerService.checkExistByPhoneNumber(dto.getPhoneNumber())){
-            request.setAttribute("message", "Customer already exists");
-            return "order/order-form";
-        }
-
         // save order
         String messageCreate = orderService.createOrder(dto);
         if(messageCreate != null){
