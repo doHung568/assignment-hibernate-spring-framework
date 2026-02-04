@@ -31,6 +31,8 @@ public class Order {
     @Column(nullable = false)
     private String shippingPostalCode;
 
+    private String region;
+
     @CreatedDate
     private LocalDateTime orderDate;
 
