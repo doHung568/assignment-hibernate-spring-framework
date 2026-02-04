@@ -25,16 +25,16 @@ public class OrderServiceImpl implements OrderService {
 
 
     @Override
-    public OrderDTO createOrder(OrderDTO orderDTO) throws Exception {
+    public String createOrder(OrderDTO orderDTO){
         // check exist by email
         if (orderRepository.existsByEmail(orderDTO.getEmail())) {
-            throw new Exception("Email already exist " + orderDTO.getEmail());
+            return "Email already exist " + orderDTO.getEmail();
         }
 
         Order orderSave = modelMapper.map(orderDTO, Order.class);
-        orderSave.setOrderId(generateOrderId());
-        Order order = orderRepository.save(orderSave);
-        return modelMapper.map(order, OrderDTO.class);
+//        orderSave.setOrderId(generateOrderId());
+        orderRepository.save(orderSave);
+        return null;
     }
 
     private String generateOrderId() {
