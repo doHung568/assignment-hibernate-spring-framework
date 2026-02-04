@@ -6,12 +6,9 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface OrderRepository extends JpaRepository<Order, Integer> {
+public interface OrderRepository extends JpaRepository<Order, String> {
+    @Query(value = "select o.id from orders o order by o.id DESC LIMIT 1", nativeQuery = true)
+    String findLastId();
 
-    boolean existsByEmail(String email);
-
-    @Query(value = "select o.order_id from orders o order by o.order_id DESC LIMIT 1", nativeQuery = true)
-    String findLastOrderId();
-
-    Order findOrderByOrderId(String orderId);
+    Order findOrderById(String id);
 }

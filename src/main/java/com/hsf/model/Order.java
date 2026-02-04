@@ -16,35 +16,27 @@ import java.time.LocalDateTime;
 @EntityListeners(AuditingEntityListener.class)
 public class Order {
     @Id
-    private String orderId;
+    private String id;
 
     @Column(nullable = false)
-    private String firstName;
+    private String shippingAddressLine1;
+    private String shippingAddressLine2;
 
     @Column(nullable = false)
-    private String lastName;
-
-    @Column(name = "email", unique = true)
-    private String email;
+    private String shippingCity;
 
     @Column(nullable = false)
-    private String phone;
+    private String shippingCountry;
 
     @Column(nullable = false)
-    private String addressLine1;
+    private String shippingPostalCode;
 
-    private String addressLine2;
-
-    @Column(nullable = false)
-    private String city;
     private String region;
-
-    @Column(nullable = false)
-    private String postalCode;
-
-    @Column(nullable = false)
-    private String country;
 
     @CreatedDate
     private LocalDateTime orderDate;
+
+    @ManyToOne
+    @JoinColumn(name= "customer_id")
+    private Customer customer;
 }

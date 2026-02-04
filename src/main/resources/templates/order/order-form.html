@@ -33,7 +33,7 @@
         <!--        phone-->
         <div class="mb-4">
             <label for="phone" class="form-label">Phone</label>
-            <input type="tel" class="form-control" id="phone" name="phone" placeholder="+49 123456789">
+            <input type="tel" class="form-control" id="phone" name="phoneNumber" placeholder="+49 123456789">
         </div>
 
         <!--        address-->
@@ -41,16 +41,16 @@
             <div>
                 <label class="form-label">Address</label>
                 <div class="mb-2">
-                    <input type="text" class="form-control" name="addressLine1" placeholder="Address Line 1">
+                    <input type="text" class="form-control" name="shippingAddressLine1" placeholder="Address Line 1">
                 </div>
                 <div class="mb-2">
-                    <input type="text" class="form-control" name="addressLine2" placeholder="Address Line 2">
+                    <input type="text" class="form-control" name="shippingAddressLine2" placeholder="Address Line 2">
                 </div>
             </div>
             <!--            city region -->
             <div class="row mb-2">
                 <div class="col">
-                    <input type="text" class="form-control" placeholder="City" name="city">
+                    <input type="text" class="form-control" placeholder="City" name="shippingCity">
                 </div>
                 <div class="col">
                     <input type="text" class="form-control" placeholder="Region" name="region">
@@ -59,10 +59,10 @@
             <!--            postal country-->
             <div class="row">
                 <div class="col">
-                    <input type="text" class="form-control" placeholder="Postal/Zip Code" name="postalCode">
+                    <input type="text" class="form-control" placeholder="Postal/Zip Code" name="shippingPostalCode">
                 </div>
                 <div class="col">
-                    <select class="form-select" aria-label="Default select" name="country">
+                    <select class="form-select" aria-label="Default select" name="shippingCountry">
                         <option selected="">Select country</option>
                         <option value="vietnam">Vietnam</option>
                         <option value="cambodia">Cambodia</option>
