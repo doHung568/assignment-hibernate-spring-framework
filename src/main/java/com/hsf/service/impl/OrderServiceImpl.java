@@ -26,19 +26,14 @@ public class OrderServiceImpl implements OrderService {
 
     @Override
     public String createOrder(OrderDTO orderDTO){
-        // check exist by email
-        if (orderRepository.existsByEmail(orderDTO.getEmail())) {
-            return "Email already exist " + orderDTO.getEmail();
-        }
-
         Order orderSave = modelMapper.map(orderDTO, Order.class);
-//        orderSave.setOrderId(generateOrderId());
+        orderSave.setId(generateOrderId());
         orderRepository.save(orderSave);
         return null;
     }
 
     private String generateOrderId() {
-        String lastOrderId = orderRepository.findLastOrderId();
+        String lastOrderId = orderRepository.findLastId();
         if (lastOrderId == null || lastOrderId.isEmpty()) {
             return "ORD001";
         }
@@ -60,8 +55,7 @@ public class OrderServiceImpl implements OrderService {
 
     @Override
     public OrderDTO getOrderDetails(String id) {
-        Order order = orderRepository.findOrderByOrderId(id);
+        Order order = orderRepository.findOrderById(id);
         return modelMapper.map(order, OrderDTO.class);
     }
-
 }
