@@ -9,8 +9,8 @@ import com.hsf.service.OrderService;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 
 @Service
@@ -54,11 +54,20 @@ public class OrderServiceImpl implements OrderService {
     @Override
     public List<OrderDTO> getAll() {
         List<Order> orders = orderRepository.findAll();
-        List<OrderDTO> orderDTOs = new ArrayList<>();
-        for (Order order : orders) {
-            orderDTOs.add(modelMapper.map(order, OrderDTO.class));
-        }
-        return orderDTOs;
+
+        // define mapping
+        modelMapper.typeMap(Order.class, OrderDTO.class).addMappings(mapper -> {
+            // map ID of Order -> OrderID of OrderDTO
+            mapper.map(Order::getId, OrderDTO::setOrderId);
+            // map field Customer -> OrderDTO
+            mapper.map(src -> src.getCustomer().getFirstName(), OrderDTO::setFirstName);
+            mapper.map(src -> src.getCustomer().getLastName(), OrderDTO::setLastName);
+            mapper.map(src -> src.getCustomer().getEmail(), OrderDTO::setEmail);
+        });
+
+        return orders.stream()
+                .map(order -> modelMapper.map(order, OrderDTO.class))
+                .collect(Collectors.toList());
     }
 
     @Override

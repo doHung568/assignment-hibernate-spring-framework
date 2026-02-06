@@ -29,8 +29,8 @@
                 <a th:href="@{/order/details(orderId=${order.orderId})}"
                    th:text="${order.email}"></a>
             </td>
-            <td th:text="${order.addressLine1}"></td>
-            <td th:text="${order.city}"></td>
+            <td th:text="${order.shippingAddressLine1}"></td>
+            <td th:text="${order.shippingCity}"></td>
         </tr>
         </tbody>
     </table>
