@@ -34,38 +34,38 @@
         <div class="mb-4">
             <label for="phone" class="form-label">Phone</label>
             <input type="tel" class="form-control" id="phone"
-                   th:value="${orderDTO.phone}" readonly>
+                   th:value="${orderDTO.phoneNumber}" readonly>
         </div>
 
         <div>
             <label class="form-label">Address</label>
             <div class="mb-2">
-                <input type="text" class="form-control" th:value="${orderDTO.addressLine1}" readonly>
+                <input type="text" class="form-control" th:value="${orderDTO.shippingAddressLine1}" readonly>
             </div>
             <div class="mb-2">
-                <input type="text" class="form-control" th:value="${orderDTO.addressLine2}" readonly>
+                <input type="text" class="form-control" th:value="${orderDTO.shippingAddressLine2}" readonly>
             </div>
 
             <div class="row mb-2">
                 <div class="col">
-                    <input type="text" class="form-control" th:value="${orderDTO.city}" readonly>
+                    <input type="text" class="form-control" th:value="${orderDTO.shippingCity}" readonly>
                 </div>
                 <div class="col">
-                    <input type="text" class="form-control" th:value="${orderDTO.region}" readonly>
+                    <input type="text" class="form-control" th:value="${orderDTO.shippingRegion}" readonly>
                 </div>
             </div>
 
             <div class="row">
                 <div class="col">
-                    <input type="text" class="form-control" th:value="${orderDTO.postalCode}" readonly>
+                    <input type="text" class="form-control" th:value="${orderDTO.shippingPostalCode}" readonly>
                 </div>
                 <div class="col">
                     <select class="form-select" name="country" disabled>
-                        <option value="vietnam" th:selected="${orderDTO.country == 'vietnam'}">Vietnam</option>
-                        <option value="cambodia" th:selected="${orderDTO.country == 'cambodia'}">Cambodia</option>
-                        <option value="laos" th:selected="${orderDTO.country == 'laos'}">Laos</option>
-                        <option value="thailand" th:selected="${orderDTO.country == 'thailand'}">Thailand</option>
-                        <option value="china" th:selected="${orderDTO.country == 'china'}">China</option>
+                        <option value="vietnam" th:selected="${orderDTO.shippingCountry == 'vietnam'}">Vietnam</option>
+                        <option value="cambodia" th:selected="${orderDTO.shippingCountry == 'cambodia'}">Cambodia</option>
+                        <option value="laos" th:selected="${orderDTO.shippingCountry == 'laos'}">Laos</option>
+                        <option value="thailand" th:selected="${orderDTO.shippingCountry == 'thailand'}">Thailand</option>
+                        <option value="china" th:selected="${orderDTO.shippingCountry == 'china'}">China</option>
                     </select>
                 </div>
             </div>

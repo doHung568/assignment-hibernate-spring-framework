@@ -37,6 +37,8 @@ public class OrderDTO {
     @NotBlank(message = "City is required")
     private String shippingCity;
 
+    private String shippingRegion;
+
     @Column(nullable = false)
     private String shippingCountry;
 

@@ -28,7 +28,7 @@ public class OrderServiceImpl implements OrderService {
 
 
     @Override
-    public String createOrder(OrderDTO orderDTO){
+    public String createOrder(OrderDTO orderDTO) {
         Order orderSave = modelMapper.map(orderDTO, Order.class);
         orderSave.setId(generateOrderId());
         orderSave.setCustomer(getCustomerByEmail(orderDTO.getEmail()));
@@ -47,7 +47,7 @@ public class OrderServiceImpl implements OrderService {
         return String.format("ORD%03d", nextId);
     }
 
-    private Customer getCustomerByEmail(String email){
+    private Customer getCustomerByEmail(String email) {
         return customerRepository.findCustomerByEmail(email);
     }
 
@@ -73,6 +73,10 @@ public class OrderServiceImpl implements OrderService {
     @Override
     public OrderDTO getOrderDetails(String id) {
         Order order = orderRepository.findOrderById(id);
+
+        modelMapper.typeMap(Order.class, OrderDTO.class).addMappings(mapper -> {
+            mapper.map(src -> src.getCustomer().getPhoneNumber(), OrderDTO::setPhoneNumber);
+        });
         return modelMapper.map(order, OrderDTO.class);
     }
 }
